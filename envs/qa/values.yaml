@@ -1,0 +1,10 @@
+global:
+  env: qa
+
+# Example overrides per env:
+# incidentsApi:
+#   image:
+#     tag: vX
+# frontend:
+#   image:
+#     tag: vX

@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: opspulse
+  namespace: argocd
+spec:
+  description: OpsPulse project
+  sourceRepos:
+    - '*'   # tighten later to your repo URL
+  destinations:
+    - namespace: dev
+      server: https://kubernetes.default.svc
+    - namespace: qa
+      server: https://kubernetes.default.svc
+    - namespace: prod
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

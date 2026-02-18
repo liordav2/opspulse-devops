@@ -1,0 +1,35 @@
+global:
+  env: dev
+
+frontend:
+  image:
+    repository: opspulse/frontend
+    tag: v1
+  service:
+    port: 3000
+
+incidentsApi:
+  image:
+    repository: opspulse/incidents-api
+    tag: v1
+  service:
+    port: 8080
+
+notifierWorker:
+  image:
+    repository: opspulse/notifier-worker
+    tag: v1
+  service:
+    port: 9090
+
+postgres:
+  enabled: true
+  image:
+    repository: postgres
+    tag: "16"
+  service:
+    port: 5432
+  db:
+    name: opspulse
+    user: opspulse
+    # password should come from a Secret (NOT here)

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opspulse-dev
+  namespace: argocd
+spec:
+  project: opspulse
+  source:
+    repoURL: REPLACE_WITH_YOUR_GIT_REPO_URL
+    targetRevision: main
+    path: helm/opspulse
+    helm:
+      valueFiles:
+        - ../../envs/dev/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
